@@ -7,8 +7,13 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
+    background-image: url("https://github.com/alidevtop/robux/releases/download/ff/de4e698b86f73bc5.jpg");
+    background-size: cover;      /* растягивает картинку на весь блок, сохраняя пропорции */
+    background-position: center; /* центрирует изображение */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* фон не двигается при скролле (опционально) */
+    min-height: 100vh;            /* чтобы фон покрывал весь экран по высоте */
     font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    background: #f4f5f7;
     min-height: 100vh;
     display: flex;
     align-items: center;
