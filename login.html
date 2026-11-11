@@ -22,37 +22,121 @@
     background-position: center;
     background-attachment: fixed;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 20px;
     color: #fff;
   }
 
-  .container {
+  /* ================= NAVBAR ================= */
+  .navbar {
     width: 100%;
-    max-width: 400px;
+    height: 48px;
+    background-color: #191b1f;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .navbar-logo {
+    height: 24px;
+    width: auto;
+    margin-right: 30px;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin-right: auto;
+  }
+
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #ccc;
+  }
+
+  .nav-search {
+    display: flex;
+    align-items: center;
+    background: #232527;
+    border: 1px solid #3b3e41;
+    border-radius: 8px;
+    padding: 0 12px;
+    height: 32px;
+    width: 250px;
+    margin-right: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .nav-search:focus-within {
+    border-color: #00a2ff;
+  }
+
+  .nav-search svg {
+    fill: #888;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+
+  .nav-search input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .nav-search input::placeholder {
+    color: #888;
+  }
+
+  .nav-signup-btn {
+    background: #335fff; /* Синий цвет кнопки Sign Up */
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .nav-signup-btn:hover {
+    background: #2548e0;
+  }
+
+  /* ================= MAIN CONTENT ================= */
+  .main-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 48px); /* Вычитаем высоту навбара */
+    padding: 30px 20px;
   }
 
-  /* Логотип Roblox */
-  .logo {
-    width: 200px;
-    height: auto;
-    margin-bottom: 25px;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-  }
-
-  /* Темная карточка */
   .login-box {
     background: #232527;
     border-radius: 8px;
     padding: 30px;
     width: 100%;
+    max-width: 400px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.5);
     text-align: left;
+    /* Небольшая тень, чтобы выделялась на фоне */
+    backdrop-filter: blur(10px); 
   }
 
   .login-box h1 {
@@ -101,7 +185,6 @@
     box-shadow: 0 0 0 1px #00a2ff;
   }
 
-  /* Иконка глаза */
   .eye-icon {
     position: absolute;
     right: 12px;
@@ -112,7 +195,6 @@
     fill: #ccc;
   }
 
-  /* Кнопка Sign In */
   .login-btn {
     width: 100%;
     padding: 12px;
@@ -131,7 +213,6 @@
     background: #4a4e52;
   }
 
-  /* Ссылки */
   .forgot-link {
     display: inline-block;
     color: #fff;
@@ -144,7 +225,6 @@
     border-bottom: 1px solid #fff;
   }
 
-  /* Разделитель */
   .divider {
     display: flex;
     align-items: center;
@@ -167,7 +247,6 @@
     padding: 0 12px;
   }
 
-  /* Кнопки методов */
   .method-btn {
     width: 100%;
     padding: 12px;
@@ -196,7 +275,6 @@
     fill: #fff;
   }
 
-  /* Подвал */
   .footer-text {
     margin-top: 25px;
     font-size: 14px;
@@ -212,25 +290,42 @@
   .footer-text a:hover {
     text-decoration: underline;
   }
+
+  /* Адаптив под мобилки */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-search { display: none; }
+    .navbar { justify-content: space-between; }
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <!-- Логотип Roblox -->
-  <svg class="logo" viewBox="0 0 256 60" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 10 10 L 10 50 L 22 50 L 22 34 L 30 34 L 38 50 L 52 50 L 42 32 C 48 30 52 25 52 18 C 52 12 47 10 40 10 Z M 22 24 L 22 20 L 36 20 C 38 20 40 21 40 24 C 40 27 38 28 36 28 L 22 28 Z" fill="#fff"/>
-    <path d="M 70 10 C 58 10 55 20 55 30 C 55 40 58 50 70 50 C 82 50 85 40 85 30 C 85 20 82 10 70 10 Z M 70 40 C 66 40 65 35 65 30 C 65 25 66 20 70 20 C 74 20 75 25 75 30 C 75 35 74 40 70 40 Z" fill="#fff"/>
-    <path d="M 95 10 L 95 50 L 115 50 C 125 50 130 45 130 38 C 130 32 126 28 120 27 C 124 26 126 22 126 18 C 126 12 122 10 114 10 Z M 107 20 L 112 20 C 115 20 116 21 116 24 C 116 27 115 28 112 28 L 107 28 Z M 107 36 L 114 36 C 117 36 118 37 118 40 C 118 43 117 44 114 44 L 107 44 Z" fill="#fff"/>
-    <path d="M 140 10 L 140 50 L 165 50 L 165 40 L 152 40 L 152 10 Z" fill="#fff"/>
-    <path d="M 185 10 C 173 10 170 20 170 30 C 170 40 173 50 185 50 C 197 50 200 40 200 30 C 200 20 197 10 185 10 Z M 185 40 C 181 40 180 35 180 30 C 180 25 181 20 185 20 C 189 20 190 25 190 30 C 190 35 189 40 185 40 Z" fill="#fff"/>
-    <path d="M 212 10 L 225 30 L 212 50 L 225 50 L 232 37 L 239 50 L 252 50 L 239 30 L 252 10 L 239 10 L 232 23 L 225 10 Z" fill="#fff"/>
-  </svg>
+<!-- ================= НАВИГАЦИОННАЯ ПАНЕЛЬ ================= -->
+<header class="navbar">
+  <!-- Логотип из твоей ссылки -->
+  <img src="https://github.com/alidevtop/robux/releases/download/ff/robloxlogo.png" alt="Roblox Logo" class="navbar-logo">
+  
+  <ul class="nav-links">
+    <li><a href="#">Charts</a></li>
+    <li><a href="#">Marketplace</a></li>
+    <li><a href="#">Create</a></li>
+    <li><a href="#">Robux</a></li>
+  </ul>
 
+  <div class="nav-search">
+    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+    <input type="text" placeholder="Search">
+  </div>
+
+  <a href="#" class="nav-signup-btn">Sign Up</a>
+</header>
+
+<!-- ================= ОСНОВНОЙ КОНТЕНТ (КАРТОЧКА ЛОГИНА) ================= -->
+<div class="main-wrapper">
   <div class="login-box">
     <h1>Sign in</h1>
 
-    <!-- Убрана реальная форма, просто поля без отправки -->
     <div class="field">
       <label>Username, email, or phone</label>
       <div class="input-wrapper">
@@ -248,14 +343,12 @@
       </div>
     </div>
 
-    <!-- Кнопка Sign in без отправки -->
     <button class="login-btn" onclick="alert('Вход отключен в демо-версии')">Sign in</button>
 
     <a href="#" class="forgot-link">Forgot password or username?</a>
 
     <div class="divider"><span>OR</span></div>
 
-    <!-- Методы входа — при нажатии выводится сообщение -->
     <button class="method-btn" onclick="showError()">
       <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       Email a code
